@@ -1,0 +1,305 @@
+"location_type","complaint_type","request_count"
+"1-2 Family Dwelling","Rodent",7344
+"1-2 Family Dwelling","Indoor Air Quality",979
+"1-2 Family Dwelling","Unsanitary Animal Pvt Property",674
+"1-2 Family Dwelling","Standing Water",530
+"1-2 Family Dwelling","Unsanitary Pigeon Condition",270
+"1-2 Family Mixed Use Building","Rodent",543
+"1-2 Family Mixed Use Building","Indoor Air Quality",233
+"1-2 Family Mixed Use Building","Unsanitary Animal Pvt Property",60
+"1-2 Family Mixed Use Building","Unsanitary Pigeon Condition",28
+"1-2 Family Mixed Use Building","Construction Lead Dust",23
+"1-3 Family Dwelling","Drinking Water",92
+"1-3 Family Mixed Use Building","Drinking Water",12
+"3+ Family Apartment Building","Indoor Air Quality",4677
+"3+ Family Apartment Building","Unsanitary Animal Pvt Property",1348
+"3+ Family Apartment Building","Construction Lead Dust",1199
+"3+ Family Apartment Building","Unsanitary Pigeon Condition",527
+"3+ Family Apartment Building","Asbestos",375
+"3+ Family Apt. Building","Rodent",20183
+"3+ Family Apt. Building","Indoor Air Quality",1111
+"3+ Family Apt. Building","Indoor Sewage",282
+"3+ Family Mixed Use Building","Rodent",2052
+"3+ Family Mixed Use Building","Unsanitary Animal Pvt Property",205
+"3+ Family Mixed Use Building","Unsanitary Pigeon Condition",165
+"3+ Family Mixed Use Building","Indoor Sewage",49
+"3+ Family Mixed Use Building","Standing Water",44
+"Abandoned Building","Standing Water",17
+"Above Address","Noise - Helicopter",28637
+"Airport or Train/Bus Station","Smoking or Vaping",18
+"Airport or Train/Bus Station","Smoking",12
+"Airport or Train/Bus Station","Poison Ivy",1
+"Alley","Dirty Condition",978
+"Apartment","Day Care",266
+"Beach","Beach/Pool/Sauna Complaint",44
+"Beach","Lifeguard",13
+"Bike Lane","Street Condition",97
+"Bike Lane","E-Scooter",1
+"Bridge","Bridge Condition",368
+"Bridge","Encampment",129
+"Bridge","Taxi Complaint",32
+"Bridge","Homeless Person Assistance",24
+"Bridge","For Hire Vehicle Complaint",18
+"Building","Building Condition",4
+"Building (Non-Residential)","Non-Residential Heat",865
+"Building Condition","Noise - Residential",1
+"Building Entrance","E-Scooter",17
+"Bus Stop Shelter","Bus Stop Shelter Complaint",1097
+"Bus Stop Shelter","Bus Stop Shelter Placement",195
+"Business","Consumer Complaint",19973
+"Cafeteria - College/University","Food Establishment",16
+"Cafeteria - College/University","Food Poisoning",6
+"Cafeteria - Private","Food Establishment",3
+"Cafeteria - Private School","Food Establishment",6
+"Cafeteria - Private School","Food Poisoning",3
+"Cafeteria - Public School","Food Establishment",7
+"Cafeteria - Public School","Food Poisoning",2
+"Catch Basin/Sewer","Rodent",166
+"Catering Hall","Food Establishment",2
+"Catering Service","Food Establishment",52
+"Catering Service","Food Poisoning",20
+"Cemetery","Mosquitoes",1
+"Club/Bar/Restaurant","Noise - Commercial",31945
+"Club/Bar/Restaurant","Drinking",971
+"Club/Bar/Restaurant","Urinating in Public",23
+"Comercial","Graffiti",6381
+"Commercial","Animal-Abuse",43
+"Commercial Building","Rodent",1706
+"Commercial Building","Unsanitary Pigeon Condition",456
+"Commercial Building","Indoor Air Quality",417
+"Commercial Building","Day Care",353
+"Commercial Building","Mold",338
+"Commercial Property","Mosquitoes",12
+"Common Area","Drug Activity",285
+"Construction Site","Rodent",513
+"Construction Site","Standing Water",45
+"Construction Site","Mosquitoes",4
+"Correctional Facility - City","Food Establishment",4
+"Correctional Facility - City","Food Poisoning",1
+"Correctional Facility - State","Food Poisoning",2
+"Correctional Facility - State","Food Establishment",1
+"Crosswalk","Street Condition",298
+"Curb","Curb Condition",1557
+"Day Care/Nursery","Rodent",30
+"Doctor's Office","X-Ray Machine/Equipment",2
+"Ferry","Ferry Inquiry",246
+"Ferry","Ferry Complaint",155
+"Food Cart Vendor","Food Poisoning",258
+"Food Establishment or Vendor","Commercial Disposal Complaint",527
+"Food Establishment or Vendor","Retailer Complaint",9
+"Garage","Municipal Parking Facility",24
+"Government Building","Rodent",50
+"Government Building","Smoking or Vaping",19
+"Government Building","Institution Disposal Complaint",10
+"Government Building","Smoking",5
+"Government Building","Standing Water",5
+"Green Cart Vendor","Mobile Food Vendor",167
+"Groomer","Unsanitary Animal Facility",10
+"Ground","Building Drinking Water Tank",2
+"Ground","Cooling Tower",1
+"Gutter","Dirty Condition",1120
+"Hallway","Drug Activity",387
+"Highway","Highway Condition",3562
+"Highway","Traffic",747
+"Highway","Taxi Complaint",323
+"Highway","Encampment",172
+"Highway","Dead Animal",133
+"Homeless Shelter","Smoking or Vaping",25
+"Homeless Shelter","Smoking",7
+"Horse Stable","Unsanitary Animal Facility",5
+"Hospital","Rodent",24
+"House and Store","Animal-Abuse",249
+"House of Worship","Noise - House of Worship",1293
+"House of Worship","Homeless Person Assistance",437
+"House of Worship","Institution Disposal Complaint",8
+"Inside","Building Drinking Water Tank",32
+"Intersection","Abandoned Bike",265
+"Kennel/Animal Shelter","Animal Facility - No Permit",66
+"Kennel/Animal Shelter","Unsanitary Animal Facility",53
+"Lobby","Drug Activity",177
+"Loft Building - Common Areas","Mold",21
+"Loft Residence","Mold",22
+"Lot","Lot Condition",1851
+"Lot","Municipal Parking Facility",26
+"Lot","Broken Parking Meter",18
+"Medical Facility","Smoking or Vaping",12
+"Medical Facility","Smoking",2
+"Medical Facility","Poison Ivy",1
+"Mixed Use","Graffiti",8766
+"Mixed Use Building","Indoor Air Quality",4
+"Mobile Food Vendor","Mobile Food Vendor",6932
+"Non-Profit","Institution Disposal Complaint",17
+"Nursing Home","Smoking or Vaping",2
+"Nursing Home","Smoking",1
+"Office Building","Rodent",37
+"Office Building","Drinking Water",2
+"Other","Homeless Person Assistance",2245
+"Other","Drug Activity",930
+"Other","Standing Water",538
+"Other","Day Care",311
+"Other","Mosquitoes",34
+"Other (Explain Below)","Rodent",5270
+"Other (Explain Below)","Food Establishment",988
+"Other (Explain Below)","Indoor Air Quality",713
+"Other (Explain Below)","Food Poisoning",468
+"Other (Explain Below)","Asbestos",52
+"Other (explain in Complaint Details)","Food Establishment",55
+"Overpass","Sidewalk Condition",68
+"Overpass","Curb Condition",8
+"Park","Maintenance or Facility",24852
+"Park","Animal in a Park",5248
+"Park","Violation of Park Rules",4497
+"Park","Damaged Tree",624
+"Park","Dead/Dying Tree",235
+"Park/Playground","Noise - Park",8275
+"Park/Playground","Encampment",4468
+"Park/Playground","Homeless Person Assistance",2494
+"Park/Playground","Illegal Fireworks",1032
+"Park/Playground","Drinking",331
+"Parking Lot","Animal-Abuse",47
+"Parking Lot/Garage","Rodent",435
+"Parking Lot/Garage","Standing Water",14
+"Permanent Food Stand","Food Establishment",18
+"Petting Zoo/Animal Exhibit","Animal Facility - No Permit",10
+"Petting Zoo/Animal Exhibit","Unsanitary Animal Facility",5
+"Pier","Illegal Fireworks",37
+"Pool","Beach/Pool/Sauna Complaint",136
+"Pool","Lifeguard",16
+"Private House","Day Care",266
+"Private Property","E-Scooter",163
+"Private Residence","Pet Shop",20
+"Private School","Day Care",233
+"Public Garden","Rodent",125
+"Public Garden/Park","Standing Water",32
+"Public Park/Garden","Mosquitoes",52
+"Public Plaza","Street Condition",3
+"Public School","Day Care",105
+"Public Stairs","Rodent",19
+"Public/Unfenced Area","Unleashed Dog",1618
+"RESIDENTIAL BUILDING","HEAT/HOT WATER",264488
+"RESIDENTIAL BUILDING","UNSANITARY CONDITION",120859
+"RESIDENTIAL BUILDING","PLUMBING",65895
+"RESIDENTIAL BUILDING","PAINT/PLASTER",64389
+"RESIDENTIAL BUILDING","DOOR/WINDOW",46374
+"Residence","Illegal Animal Kept as Pet",536
+"Residence","Litter Basket Complaint",120
+"Residence","Food Establishment",35
+"Residence","Illegal Animal Sold",21
+"Residence","Dead Animal",13
+"Residential","Graffiti",3213
+"Residential Building","Smoking or Vaping",2648
+"Residential Building","Smoking",1183
+"Residential Building","Animal-Abuse",363
+"Residential Building","Poison Ivy",91
+"Residential Building","Indoor Air Quality",72
+"Residential Building/House","Noise - Residential",378213
+"Residential Building/House","Non-Emergency Police Matter",8675
+"Residential Building/House","Animal-Abuse",7530
+"Residential Building/House","Encampment",6387
+"Residential Building/House","Homeless Person Assistance",4767
+"Residential Property","Mosquitoes",226
+"Restaurant","Indoor Air Quality",64
+"Restaurant","Drinking Water",1
+"Restaurant/Bar/Deli/Bakery","Food Establishment",11331
+"Restaurant/Bar/Deli/Bakery","Food Poisoning",2453
+"Restaurant/Bar/Deli/Bakery","Smoking or Vaping",296
+"Restaurant/Bar/Deli/Bakery","Smoking",54
+"Restaurant/Bar/Deli/Bakery","Calorie Labeling",16
+"Retail Store","Commercial Disposal Complaint",263
+"Retail Store","Tobacco or Non-Tobacco Sale",3
+"Retail Store","Retailer Complaint",2
+"Retail Store","Smoking",2
+"Roadway Tunnel","Traffic",23
+"Roadway Tunnel","Taxi Complaint",9
+"Roadway Tunnel","For Hire Vehicle Complaint",4
+"Roadway Tunnel","Tunnel Condition",4
+"Roadway Tunnel","Encampment",3
+"Roadway Tunnel","Homeless Person Assistance",3
+"Roof","Building Drinking Water Tank",12
+"Roof","Cooling Tower",9
+"Sauna","Beach/Pool/Sauna Complaint",12
+"School","School Maintenance",1751
+"School","Indoor Air Quality",52
+"School","Asbestos",18
+"School","Institution Disposal Complaint",12
+"School","Standing Water",4
+"School - College/University","Smoking or Vaping",3
+"School - College/University","Smoking",1
+"School - K-12 Private","Smoking or Vaping",3
+"School - K-12 Private","Smoking",1
+"School - K-12 Public","Smoking or Vaping",17
+"School - K-12 Public","Smoking",6
+"School Safety Zone","Street Condition",15
+"School/Pre-School","Rodent",66
+"Senior Center","Food Establishment",14
+"Senior Center","Food Poisoning",3
+"Sidewalk","Dirty Condition",46689
+"Sidewalk","Illegal Dumping",29103
+"Sidewalk","Sidewalk Condition",25105
+"Sidewalk","Obstruction",11269
+"Sidewalk","Residential Disposal Complaint",9817
+"Single Room Occupancy (SRO)","Rodent",20
+"Single Room Occupancy (SRO)","Smoking or Vaping",4
+"Single Room Occupancy (SRO)","Smoking",1
+"Soup Kitchen","Food Establishment",15
+"Soup Kitchen","Food Poisoning",2
+"Spa Pool","Beach/Pool/Sauna Complaint",8
+"Spa Pool","Lifeguard",3
+"Speed Reducer","Street Condition",117
+"Sports Arena","Smoking or Vaping",5
+"Sports Arena","Smoking",1
+"Stairwell","Drug Activity",192
+"Steam Room","Beach/Pool/Sauna Complaint",11
+"Store","Illegal Animal Sold",32
+"Store/Commercial","Noise - Commercial",36213
+"Store/Commercial","Homeless Person Assistance",5860
+"Store/Commercial","Encampment",5469
+"Store/Commercial","Panhandling",2085
+"Store/Commercial","Non-Emergency Police Matter",1620
+"Street","Derelict Vehicles",49174
+"Street","Missed Collection",32932
+"Street","Street Condition",31233
+"Street","Damaged Tree",31093
+"Street","Vendor Enforcement",25971
+"Street Area","Mosquitoes",84
+"Street Fair Vendor","Food Establishment",13
+"Street Fair Vendor","Food Poisoning",7
+"Street Vendor","Illegal Animal Sold",89
+"Street/Curbside","Maintenance or Facility",1382
+"Street/Curbside","Violation of Park Rules",353
+"Street/Curbside","Animal in a Park",304
+"Street/Sidewalk","Illegal Parking",505266
+"Street/Sidewalk","Blocked Driveway",169936
+"Street/Sidewalk","Noise - Street/Sidewalk",162782
+"Street/Sidewalk","Abandoned Vehicle",70002
+"Street/Sidewalk","Noise - Vehicle",48782
+"Subway","Homeless Person Assistance",8353
+"Subway","Encampment",3417
+"Subway","Panhandling",3331
+"Subway Station","Urinating in Public",42
+"Subway Station","Animal-Abuse",39
+"Summer Camp","Food Establishment",1
+"Swamp or Pond","Mosquitoes",3
+"Tanning Salon","Tanning",1
+"Tattoo Parlor","Tattooing",191
+"Taxi","Lost Property",6232
+"Taxi","Found Property",73
+"Terminal","Ferry Inquiry",80
+"Terminal","Ferry Complaint",29
+"Theater","Smoking or Vaping",38
+"Theater","Smoking",1
+"Tire Shop","Standing Water",5
+"Traffic Island or Median","Dirty Condition",281
+"UNKNOWN","Water System",65765
+"UNKNOWN","Noise",55501
+"UNKNOWN","Traffic Signal Condition",43025
+"UNKNOWN","Street Condition",40598
+"UNKNOWN","General Construction/Plumbing",36940
+"Vacant Building","Rodent",411
+"Vacant Lot","Rodent",708
+"Vacant Lot","Abandoned Vehicle",189
+"Vacant Lot","Standing Water",10
+"Vacant Lot/Property","Mosquitoes",19
+"Vehicle Lane","Street Condition",112
+"Wooded Area","Mosquitoes",2
+"Yard","Dirty Condition",5157
