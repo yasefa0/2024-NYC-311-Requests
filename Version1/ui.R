@@ -1,33 +1,30 @@
+# ui.R
 #
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    https://shiny.posit.co/
-#
+# Purpose: User Interface for the NYC 311 Requests Data Dashboard
 
 library(shiny)
 
-# Define UI for application that draws a histogram
-fluidPage(
-
-    # Application title
-    titlePanel("Old Faithful Geyser Data"),
-
-    # Sidebar with a slider input for number of bins
-    sidebarLayout(
-        sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
-        ),
-
-        # Show a plot of the generated distribution
-        mainPanel(
-            plotOutput("distPlot")
-        )
+shinyUI(fluidPage(
+  titlePanel("NYC 311 Requests Data Dashboard"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("plotType", "Select Visualization:", 
+                  choices = list(
+                    "Agency Performance" = "agency_barchart",
+                    "Complaint Type Distribution" = "complaint_type_distribution",
+                    "Submission Methods" = "submission_methods",
+                    "Status Distribution" = "status_distribution",
+                    "Borough Distribution" = "borough_distribution",
+                    "Top Complaints by Agency" = "top_complaints_by_agency",
+                    "Complaints by Hour" = "complaint_by_hour",
+                    "Time Series Plot" = "time_series_plot",
+                    "Word Cloud (Descriptors)" = "wordcloud_descriptors",
+                    "Top 5 Reasons by Location" = "top5_reasons_by_location_type",
+                    "Bridge/Highway Complaints" = "bridge_highway_visuals"
+                  ))
+    ),
+    mainPanel(
+      plotOutput("selectedPlot")
     )
-)
+  )
+))
