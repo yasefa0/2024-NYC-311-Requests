@@ -114,17 +114,15 @@ location_grouped <- location_summary %>%
   group_by(location_group, complaint_type) %>%
   summarise(total_requests = sum(request_count), .groups = "drop")
 
-# ----- End New Code -----
-
-# Add this to your server function, near the beginning
-observeEvent(input$plotType, {
-  # Skip rendering plots when on the about page
-  if (input$plotType == "about") {
-    return(NULL)
-  }
-}, priority = 10)  # Higher priority to run before other observers
-
 shinyServer(function(input, output) {
+  
+  # Add this to your server function, near the beginning
+  observeEvent(input$plotType, {
+    # Skip rendering plots when on the about page
+    if (input$plotType == "about") {
+      return(NULL)
+    }
+  }, priority = 10)  # Higher priority to run before other observers
   
   # Reactive function for main plots (non-location_pie options)
   get_plot_data <- reactive({

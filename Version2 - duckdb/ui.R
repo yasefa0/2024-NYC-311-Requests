@@ -25,6 +25,7 @@ dashboardPage(
       condition = "input.plotType == 'about'",
       box(width = 12, title = "About This Dashboard", status = "primary",
           h3("NYC 311 Service Requests Analysis Dashboard"),
+          p("Updated 02/18/25"),
           p("This project analyzes NYC 311 service requests in 2024 through an interactive data dashboard. Using data provided by NYC OpenData, the dashboard explores patterns in service requests, including complaint trends, agency involvement, response times, submission methods, and temporal patterns. The goal is to provide stakeholders with actionable insights into city services and response efficiency."),
           h4("Statistical Analysis"),
           p("Statistical analysis was conducted to examine key trends and insights within the dataset. This includes:"),
