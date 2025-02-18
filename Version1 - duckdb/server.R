@@ -81,7 +81,6 @@ agency_resolution_times <- nyc311_dataset %>%
   arrange(avg_resolution_hours) %>%
   head(15)  # Top 15 fastest agencies
 
-# ----- New Code: Location Complaint Pie Chart -----
 # First, summarize the raw dataset by location_type and complaint_type.
 location_summary <- nyc311_dataset %>%
   select(location_type, complaint_type) %>%
@@ -116,6 +115,14 @@ location_grouped <- location_summary %>%
   summarise(total_requests = sum(request_count), .groups = "drop")
 
 # ----- End New Code -----
+
+# Add this to your server function, near the beginning
+observeEvent(input$plotType, {
+  # Skip rendering plots when on the about page
+  if (input$plotType == "about") {
+    return(NULL)
+  }
+}, priority = 10)  # Higher priority to run before other observers
 
 shinyServer(function(input, output) {
   
