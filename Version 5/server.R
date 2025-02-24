@@ -25,13 +25,28 @@ hour_counts <- nyc311_dataset %>%
   mutate(hour_of_day = hour(created_date)) %>%
   count(hour_of_day, name = "request_count")
 
-# Pre-compute agency counts
+# Define a mapping of agency abbreviations to full names
+agency_full_names <- c(
+  "NYPD" = "New York Police Department",
+  "HPD" = "Department of Housing Preservation and Development",
+  "DSNY" = "Department of Sanitation",
+  "DOT" = "Department of Transportation",
+  "DEP" = "Department of Environmental Protection",
+  "DPR" = "Department of Parks and Recreation",
+  "DOB" = "Department of Buildings",
+  "DOHMH" = "Department of Health and Mental Hygiene",
+  "DHS" = "Department of Homeless Services",
+  "TLC" = "Taxi and Limousine Commission"
+)
+
+# Update the dataframe to include the full agency names
 agency_counts <- nyc311_dataset %>%
   group_by(agency) %>%
   summarise(requests = n()) %>%
   collect() %>%
   arrange(desc(requests)) %>%
-  head(10)
+  head(10) %>%
+  mutate(agency_full_name = agency_full_names[agency])
 
 # Pre-compute submission methods
 submission_methods <- nyc311_dataset %>%
@@ -164,7 +179,7 @@ shinyServer(function(input, output) {
     switch(input$plotType,
            "agency_barchart" = {
              plot_ly(data = plot_data, 
-                     x = ~reorder(agency, -requests), 
+                     x = ~reorder(agency_full_names, -requests), 
                      y = ~requests, 
                      type = "bar",
                      marker = list(color = '#1f77b4')) %>%
