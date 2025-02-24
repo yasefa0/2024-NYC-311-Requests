@@ -81,6 +81,13 @@ agency_resolution_times <- nyc311_dataset %>%
   arrange(avg_resolution_hours) %>%
   head(15)  # Top 15 fastest agencies
 
+# Pre-compute complaint status counts
+status_counts <- nyc311_dataset %>%
+  select(status) %>%
+  collect() %>%
+  count(status) %>%
+  arrange(desc(n))
+
 # First, summarize the raw dataset by location_type and complaint_type.
 location_summary <- nyc311_dataset %>%
   select(location_type, complaint_type) %>%
@@ -260,6 +267,7 @@ shinyServer(function(input, output) {
   
   output$wordcloudPlot <- renderPlot({
     req(input$plotType == "wordcloud_descriptors")
+    
     # Collect descriptor data
     plot_data <- nyc311_dataset %>%
       select(descriptor) %>%
@@ -268,19 +276,50 @@ shinyServer(function(input, output) {
       count(descriptor) %>%
       filter(n > 50) %>%
       arrange(desc(n))
+    
     # Ensure there is enough data for the word cloud
     req(nrow(plot_data) > 0)
-    # Generate the word cloud
+    
+    # Set plot margins to prevent word cutoff
+    par(mar = c(0, 0, 0, 0))  # Remove outer margins
+    
+    # Generate a bigger word cloud
     wordcloud(
       words = plot_data$descriptor,
       freq = plot_data$n,
       min.freq = 2,
-      max.words = 200,
-      scale = c(3, 0.5),
+      max.words = 250,  # Increase the max words
+      scale = c(5, 0.8),  # Adjust text size (default is c(3,0.5))
       random.order = FALSE,
-      rot.per = 0.25,
+      rot.per = 0.1,  # Reduce rotation for better visibility
       colors = brewer.pal(8, "Dark2")
     )
+  }, height = 1000, width = 1200)  # Increase plot size
+  
+  
+  output$statusBar <- renderPlotly({
+    req(input$plotType == "status_bar")
+    
+    plot_data <- nyc311_dataset %>%
+      select(status) %>%
+      collect() %>%
+      count(status) %>%
+      arrange(desc(n))
+    
+    plot_ly(
+      data = plot_data, 
+      x = ~status, 
+      y = ~n, 
+      type = "bar", 
+      marker = list(color = 'rgba(100, 149, 237, 0.8)')  # Use CornflowerBlue
+    ) %>%
+      layout(
+        title = "Complaint Status Distribution",
+        xaxis = list(title = "Status", tickangle = 0),  # Keep labels horizontal
+        yaxis = list(title = "Count", type = "log"),  # Apply log scale for visibility
+        bargap = 0.3  # Adjust bar spacing
+      )
   })
+  
   
 })

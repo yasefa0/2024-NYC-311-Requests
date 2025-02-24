@@ -1,4 +1,3 @@
-# ui.R
 library(shiny)
 library(shinycssloaders)
 library(plotly)
@@ -16,7 +15,8 @@ dashboardPage(
                 menuItem("Complaint Trends Over Time", icon = icon("chart-line"), tabName = "stacked_time_series"),
                 menuItem("Complaints by Borough", icon = icon("map-marker-alt"), tabName = "stacked_borough_bar"),
                 menuItem("Agency Resolution Time", icon = icon("hourglass"), tabName = "agency_resolution_time"),
-                menuItem("Location Complaint Pie Chart", icon = icon("chart-pie"), tabName = "location_pie")
+                menuItem("Location Complaint Pie Chart", icon = icon("chart-pie"), tabName = "location_pie"),
+                menuItem("Complaint Status", icon = icon("bar-chart"), tabName = "status_bar")
     )
   ),
   dashboardBody(
@@ -69,56 +69,24 @@ dashboardPage(
       # Use a conditional panel for the location pie chart
       conditionalPanel(
         condition = "input.plotType == 'location_pie'",
-        box(width = 12, withSpinner(plotlyOutput("locationPie", height = "600px")))
+        box(width = 12, withSpinner(plotlyOutput("locationPie", height = "1000px")))
       ),
       # Special handling for wordcloud
       conditionalPanel(
         condition = "input.plotType == 'wordcloud_descriptors'",
-        box(width = 12, withSpinner(plotOutput("wordcloudPlot", height = "600px")))
+        box(width = 12, style = "text-align: center;",  # Center the word cloud box
+            withSpinner(plotOutput("wordcloudPlot", height = "1000px", width = "1000px"))
+        )  # <- Fixed closing parenthesis
       ),
       # Show the regular plot for other visualizations (except about and wordcloud)
       conditionalPanel(
-        condition = "input.plotType != 'location_pie' && input.plotType != 'about' && input.plotType != 'wordcloud_descriptors'",
-        box(width = 12, withSpinner(plotlyOutput("selectedPlot", height = "600px")))
-      )
-    ),
-    
-    # Explanatory notes for specific visualizations
-    conditionalPanel(
-      condition = "input.plotType == 'stacked_time_series'",
-      fluidRow(
-        box(width = 12,
-            wellPanel(
-              h4("About this Visualization"),
-              p("This stacked area chart shows how different complaint types trend over time. Only the top 10 most frequent complaint types are shown for clarity. The y-axis represents the total number of complaints, and each color represents a different complaint type."),
-              p("Observe seasonal patterns or trends for specific complaint types.")
-            )
-        )
-      )
-    ),
-    conditionalPanel(
-      condition = "input.plotType == 'stacked_borough_bar'",
-      fluidRow(
-        box(width = 12,
-            wellPanel(
-              h4("About this Visualization"),
-              p("This stacked bar chart shows the proportion of different complaint types within each borough. Only complaint types that make up at least 3% of the total in any borough are shown, with the top 10 complaint types highlighted and others grouped as 'Other Complaints'."),
-              p("This helps identify which boroughs have higher proportions of specific complaint types.")
-            )
-        )
-      )
-    ),
-    conditionalPanel(
-      condition = "input.plotType == 'agency_resolution_time'",
-      fluidRow(
-        box(width = 12,
-            wellPanel(
-              h4("About this Visualization"),
-              p("This bar chart shows the average time (in hours) it takes for each agency to close a request. Only agencies with more than 100 requests are included, and only the top 15 fastest agencies are displayed for clarity."),
-              p("Red lines indicate the median resolution time, helping identify agencies with skewed distributions."),
-              p("Color intensity represents the number of requests handled by each agency.")
-            )
-        )
+        condition = "input.plotType != 'location_pie' && input.plotType != 'about' && input.plotType != 'wordcloud_descriptors' && input.plotType != 'status_bar'",
+        box(width = 12, withSpinner(plotlyOutput("selectedPlot", height = "1000px")))
+      ),
+      # Complaint Status Bar Chart
+      conditionalPanel(
+        condition = "input.plotType == 'status_bar'",
+        box(width = 12, withSpinner(plotlyOutput("statusBar", height = "1000px")))
       )
     )
   )
