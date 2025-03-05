@@ -4,9 +4,11 @@ library(duckdb)
 library(dplyr)
 library(plotly)
 library(lubridate)
+library(wordcloud)
+library(RColorBrewer)
 
 con <- dbConnect(duckdb(), dbdir = ":memory:")
-file_path <- "C:/Users/muhmi/Github re/311 Data/311-dataset-POSIXct.parquet"
+file_path <- "/path/to/311-dataset.parquet"
 nyc311_dataset <- tbl(con, paste0("read_parquet('", file_path, "')"))
 
 shinyServer(function(input, output, session) {
@@ -21,8 +23,7 @@ shinyServer(function(input, output, session) {
       collect()
   })
   output$agencyPlot <- renderPlotly({
-    data <- top_agencies()
-    plot_ly(data, x = ~agency, y = ~requests, type = "bar")
+    plot_ly(top_agencies(), x = ~agency, y = ~requests, type = "bar")
   })
   
   # Hourly complaints
@@ -35,8 +36,7 @@ shinyServer(function(input, output, session) {
       summarise(request_count = n())
   })
   output$hourPlot <- renderPlotly({
-    data <- hour_counts()
-    plot_ly(data, x = ~hour_of_day, y = ~request_count, 
+    plot_ly(hour_counts(), x = ~hour_of_day, y = ~request_count, 
             type = "scatter", mode = "lines+markers")
   })
   
@@ -50,10 +50,28 @@ shinyServer(function(input, output, session) {
       collect()
   })
   output$submissionPlot <- renderPlotly({
-    data <- submission_methods()
-    plot_ly(data, x = ~open_data_channel_type, y = ~request_count, 
-            type = "bar") %>%
-      layout(title = "Submission Methods")
+    plot_ly(submission_methods(), x = ~open_data_channel_type, 
+            y = ~request_count, type = "bar")
+  })
+  
+  # Word cloud
+  output$wordcloudPlot <- renderPlot({
+    plot_data <- nyc311_dataset %>%
+      select(descriptor) %>%
+      collect() %>%
+      filter(!is.na(descriptor) & descriptor != "") %>%
+      count(descriptor) %>%
+      filter(n > 50) %>%
+      arrange(desc(n))
+    
+    wordcloud(
+      words = plot_data$descriptor,
+      freq = plot_data$n,
+      min.freq = 2,
+      max.words = 200,
+      colors = brewer.pal(8, "Dark2"),
+      scale = c(4, 0.8)
+    )
   })
   
 })
