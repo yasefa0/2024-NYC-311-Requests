@@ -3,15 +3,22 @@ library(plotly)
 
 shinyUI(fluidPage(
   
-  titlePanel("NYC 311 Requests - Version 1"),
+  titlePanel("NYC 311 Requests - Version 2"),
   
   sidebarLayout(
     sidebarPanel(
-      h4("Barebones App"),
-      p("One bar chart showcasing top agencies.")
+      radioButtons("vizChoice", "Choose Visualization:",
+                   choices = list("Top Agencies" = "agency", "By Hour" = "hour"))
     ),
     mainPanel(
-      plotlyOutput("agencyPlot")
+      conditionalPanel(
+        condition = "input.vizChoice == 'agency'",
+        plotlyOutput("agencyPlot")
+      ),
+      conditionalPanel(
+        condition = "input.vizChoice == 'hour'",
+        plotlyOutput("hourPlot")
+      )
     )
   )
 ))
