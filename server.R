@@ -14,43 +14,37 @@ nyc311_dataset <- tbl(con, paste0("read_parquet('", file_path, "')"))
 shinyServer(function(input, output, session) {
   
   # Top 5 agencies
-  top_agencies <- reactive({
-    nyc311_dataset %>%
+  output$agencyPlot <- renderPlotly({
+    data <- nyc311_dataset %>%
       group_by(agency) %>%
       summarise(requests = n()) %>%
       arrange(desc(requests)) %>%
       head(5) %>%
       collect()
-  })
-  output$agencyPlot <- renderPlotly({
-    plot_ly(top_agencies(), x = ~agency, y = ~requests, type = "bar")
+    plot_ly(data, x = ~agency, y = ~requests, type = "bar")
   })
   
   # Hourly complaints
-  hour_counts <- reactive({
-    nyc311_dataset %>%
+  output$hourPlot <- renderPlotly({
+    data <- nyc311_dataset %>%
       select(created_date) %>%
       collect() %>%
       mutate(hour_of_day = hour(created_date)) %>%
       group_by(hour_of_day) %>%
       summarise(request_count = n())
-  })
-  output$hourPlot <- renderPlotly({
-    plot_ly(hour_counts(), x = ~hour_of_day, y = ~request_count, 
+    plot_ly(data, x = ~hour_of_day, y = ~request_count, 
             type = "scatter", mode = "lines+markers")
   })
   
   # Submission methods
-  submission_methods <- reactive({
-    nyc311_dataset %>%
+  output$submissionPlot <- renderPlotly({
+    data <- nyc311_dataset %>%
       filter(open_data_channel_type != "OTHER") %>%
       group_by(open_data_channel_type) %>%
       summarise(request_count = n()) %>%
       arrange(desc(request_count)) %>%
       collect()
-  })
-  output$submissionPlot <- renderPlotly({
-    plot_ly(submission_methods(), x = ~open_data_channel_type, 
+    plot_ly(data, x = ~open_data_channel_type, 
             y = ~request_count, type = "bar")
   })
   
@@ -68,10 +62,40 @@ shinyServer(function(input, output, session) {
       words = plot_data$descriptor,
       freq = plot_data$n,
       min.freq = 2,
-      max.words = 200,
-      colors = brewer.pal(8, "Dark2"),
-      scale = c(4, 0.8)
+      scale = c(4, 0.8),
+      colors = brewer.pal(8, "Dark2")
     )
+  })
+  
+  # Stacked time series of complaints
+  output$timeSeriesPlot <- renderPlotly({
+    data <- nyc311_dataset %>%
+      select(created_date, complaint_type) %>%
+      collect() %>%
+      mutate(month = floor_date(created_date, "month")) %>%
+      group_by(month, complaint_type) %>%
+      summarise(n = n(), .groups="drop")
+    
+    # Filter to top complaint types overall
+    top_types <- data %>%
+      group_by(complaint_type) %>%
+      summarise(total = sum(n)) %>%
+      arrange(desc(total)) %>%
+      head(5) %>%
+      pull(complaint_type)
+    
+    data_filtered <- data %>%
+      filter(complaint_type %in% top_types)
+    
+    # We'll use ggplot style in Plotly:
+    # Convert to a stacked area
+    # Note: We can do either ggplotly or direct plot_ly; we'll do ggplotly for speed
+    p <- ggplot(data_filtered, aes(x = month, y = n, fill = complaint_type)) +
+      geom_area(position = "stack") +
+      labs(title = "Complaint Types Over Time", x = "Month", y = "Count") +
+      theme_minimal()
+    
+    ggplotly(p)
   })
   
 })

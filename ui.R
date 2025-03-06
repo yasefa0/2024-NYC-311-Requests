@@ -2,7 +2,7 @@ library(shiny)
 library(plotly)
 
 shinyUI(fluidPage(
-  titlePanel("NYC 311 Requests - Version 4"),
+  titlePanel("NYC 311 Requests - Version 5"),
   
   sidebarLayout(
     sidebarPanel(
@@ -10,7 +10,8 @@ shinyUI(fluidPage(
                    choices = list("Top Agencies" = "agency",
                                   "By Hour" = "hour",
                                   "Submission Methods" = "submission",
-                                  "Word Cloud" = "wordcloud"))
+                                  "Word Cloud" = "wordcloud",
+                                  "Time Series" = "time"))
     ),
     mainPanel(
       conditionalPanel(condition = "input.vizChoice == 'agency'",
@@ -24,6 +25,9 @@ shinyUI(fluidPage(
       ),
       conditionalPanel(condition = "input.vizChoice == 'wordcloud'",
                        plotOutput("wordcloudPlot", height = "500px")
+      ),
+      conditionalPanel(condition = "input.vizChoice == 'time'",
+                       plotlyOutput("timeSeriesPlot", height = "500px")
       )
     )
   )
