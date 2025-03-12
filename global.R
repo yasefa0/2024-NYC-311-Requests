@@ -19,7 +19,6 @@ library(DT)
 library(ggplot2)
 library(shinyjs)
 
-# ------- Global Constants & Helper Functions -------
 # Function to throttle reactive events
 throttle <- function(f, delay) {
   last_called <- 0
