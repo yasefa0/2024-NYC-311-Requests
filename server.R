@@ -65,7 +65,6 @@ shinyServer(function(input, output, session) {
     )
   })
   
-  # -----------------------------------------------------------------------
   # (D) RENDER PLOTS - Optimized with caching
   # -----------------------------------------------------------------------
   # Cache plot creation for expensive plots
