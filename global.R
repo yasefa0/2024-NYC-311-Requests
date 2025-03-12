@@ -34,7 +34,7 @@ throttle <- function(f, delay) {
   }
 }
 
-# ------- Load pre-computed data ONCE -------
+
 message("Loading pre-computed data...")
 precomputed_data <- readRDS("data/nyc311_precomputed_data.rds")
 
@@ -54,10 +54,9 @@ borough_centers          <- precomputed_data$borough_centers
 zoom_levels              <- precomputed_data$zoom_levels
 wordcloud_descriptors    <- precomputed_data$wordcloud_descriptors
 
-# Optional: Pre-process data to optimize memory usage
-# For example, convert to data.table for large dataframes
+
 if (require(data.table)) {
-  # Convert large dataframes to data.table for better memory efficiency
+  # Convert large dataframes
   if (nrow(complaints_by_month) > 10000) {
     complaints_by_month <- as.data.table(complaints_by_month)
   }
@@ -69,4 +68,4 @@ if (require(data.table)) {
 
 # Clean up to free memory - remove the large list object after extraction
 rm(precomputed_data)
-gc()  # Force garbage collection
+gc()  
