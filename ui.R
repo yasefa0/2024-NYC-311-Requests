@@ -1,4 +1,3 @@
-# ui.R
 library(shiny)
 library(shinycssloaders)
 library(plotly)
@@ -9,14 +8,16 @@ dashboardPage(
   dashboardSidebar(
     sidebarMenu(id = "plotType",
                 menuItem("About", icon = icon("info-circle"), tabName = "about", selected = TRUE),
-                menuItem("Agency Performance", icon = icon("chart-bar"), tabName = "agency_barchart"),
-                menuItem("Complaint Count by Hour", icon = icon("clock"), tabName = "complaint_count_by_hour"),
+                menuItem("Agency Requests Volumes", icon = icon("chart-bar"), tabName = "agency_barchart"),
+                menuItem("Complaint Volume by Hour", icon = icon("clock"), tabName = "complaint_count_by_hour"),
                 menuItem("Submission Methods", icon = icon("paper-plane"), tabName = "submission_methods"),
-                menuItem("Descriptor Word Cloud", icon = icon("cloud"), tabName = "wordcloud_descriptors"),
+                menuItem("Complaint Word Cloud", icon = icon("cloud"), tabName = "wordcloud_descriptors"),
                 menuItem("Complaint Trends Over Time", icon = icon("chart-line"), tabName = "stacked_time_series"),
                 menuItem("Complaints by Borough", icon = icon("map-marker-alt"), tabName = "stacked_borough_bar"),
                 menuItem("Agency Resolution Time", icon = icon("hourglass"), tabName = "agency_resolution_time"),
-                menuItem("Location Complaint Pie Chart", icon = icon("chart-pie"), tabName = "location_pie")
+                menuItem("Location Type Analysis", icon = icon("chart-pie"), tabName = "location_pie"),
+                menuItem("Complaint Status", icon = icon("bar-chart"), tabName = "status_bar"),
+                menuItem("Geographic Map", icon = icon("map"), tabName = 'geo_map')
     )
   ),
   dashboardBody(
@@ -48,9 +49,29 @@ dashboardPage(
             tags$li("Enhancing transparency by making complaint trends and agency performance data more accessible."),
             tags$li("Supporting data-driven decision-making to improve response times and resource distribution.")
           ),
+          h4("Visualizations Available:"),
+          tags$ul(
+            tags$li(strong("Agency Request Volumes:"), " Top agencies by number of requests"),
+            tags$li(strong("Complaint Volume by Hour:"), " How request volume varies throughout the day"),
+            tags$li(strong("Submission Methods:"), " How citizens submit their 311 requests"),
+            tags$li(strong("Complaint Word Cloud:"), " Common descriptors used in complaints"),
+            tags$li(strong("Complaint Trends Over Time:"), " How complaint types change over months"),
+            tags$li(strong("Complaint Types by Borough:"), " Proportion of complaints by borough"),
+            tags$li(strong("Agency Resolution Times:"), " How quickly agencies resolve complaints"),
+            tags$li(strong("Geographic Map:"), " Spatial distribution of complaints by borough"),
+            tags$li(strong("Location Type Analysis:"), " Most common complaints by location category"),
+            tags$li(strong("Complaint Status:"), " Distribution of request statuses") # Removed extra comma
+          ),
           p("For more information, visit our GitHub repository."),
           h4("Authors:"),
           p("Yared Asefa, Mohamed M, Sakaria Dirie")
+      )
+    ),
+    
+    conditionalPanel(
+      condition = "input.plotType == 'geo_map'",
+      selectInput("selected_borough", "Select Borough:",
+                  choices = c("BRONX", "MANHATTAN", "BROOKLYN", "QUEENS", "STATEN ISLAND")
       )
     ),
     
@@ -66,54 +87,31 @@ dashboardPage(
     
     # Plots
     fluidRow(
+      conditionalPanel(
+        condition = "input.plotType == 'geo_map'",
+        plotlyOutput("geoMap", height = "1000px")
+      ),
       # Use a conditional panel for the location pie chart
       conditionalPanel(
         condition = "input.plotType == 'location_pie'",
-        box(width = 12, withSpinner(plotlyOutput("locationPie", height = "600px")))
+        box(width = 12, withSpinner(plotlyOutput("locationPie", height = "700px")))
       ),
-      # Show the regular plot for other visualizations (except about)
+      # Special handling for wordcloud
       conditionalPanel(
-        condition = "input.plotType != 'location_pie' && input.plotType != 'about'",
-        box(width = 12, withSpinner(plotOutput("selectedPlot", height = "600px")))
-      )
-    ),
-    
-    # Explanatory notes for specific visualizations
-    conditionalPanel(
-      condition = "input.plotType == 'stacked_time_series'",
-      fluidRow(
-        box(width = 12,
-            wellPanel(
-              h4("About this Visualization"),
-              p("This stacked area chart shows how different complaint types trend over time. Only the top 10 most frequent complaint types are shown for clarity. The y-axis represents the total number of complaints, and each color represents a different complaint type."),
-              p("Observe seasonal patterns or trends for specific complaint types.")
-            )
+        condition = "input.plotType == 'wordcloud_descriptors'",
+        box(width = 12, style = "text-align: center;",  # Center the word cloud box
+            withSpinner(plotOutput("wordcloudPlot", height = "1000px", width = "1000px"))
         )
-      )
-    ),
-    conditionalPanel(
-      condition = "input.plotType == 'stacked_borough_bar'",
-      fluidRow(
-        box(width = 12,
-            wellPanel(
-              h4("About this Visualization"),
-              p("This stacked bar chart shows the proportion of different complaint types within each borough. Only complaint types that make up at least 3% of the total in any borough are shown, with the top 10 complaint types highlighted and others grouped as 'Other Complaints'."),
-              p("This helps identify which boroughs have higher proportions of specific complaint types.")
-            )
-        )
-      )
-    ),
-    conditionalPanel(
-      condition = "input.plotType == 'agency_resolution_time'",
-      fluidRow(
-        box(width = 12,
-            wellPanel(
-              h4("About this Visualization"),
-              p("This bar chart shows the average time (in hours) it takes for each agency to close a request. Only agencies with more than 100 requests are included, and only the top 15 fastest agencies are displayed for clarity."),
-              p("Red lines indicate the median resolution time, helping identify agencies with skewed distributions."),
-              p("Color intensity represents the number of requests handled by each agency.")
-            )
-        )
+      ),
+      # Show the regular plot for other visualizations (except about and wordcloud)
+      conditionalPanel(
+        condition = "input.plotType != 'location_pie' && input.plotType != 'about' && input.plotType != 'wordcloud_descriptors' && input.plotType != 'status_bar'",
+        box(width = 12, withSpinner(plotlyOutput("selectedPlot", height = "700px")))
+      ),
+      # Complaint Status Bar Chart
+      conditionalPanel(
+        condition = "input.plotType == 'status_bar'",
+        box(width = 12, withSpinner(plotlyOutput("statusBar", height = "700px")))
       )
     )
   )

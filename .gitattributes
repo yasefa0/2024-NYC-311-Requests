@@ -1,2 +1,0 @@
-*.parquet filter=lfs diff=lfs merge=lfs -text
-311-dataset-POSIXct-complete.parquet filter=lfs diff=lfs merge=lfs -text
