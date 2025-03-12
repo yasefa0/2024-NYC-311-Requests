@@ -66,6 +66,6 @@ if (require(data.table)) {
   }
 }
 
-# Clean up to free memory - remove the large list object after extraction
+# Clean up to free memory, remove the large list object after extraction
 rm(precomputed_data)
 gc()  
